@@ -1,0 +1,2 @@
+export const MOVIES_DATA_URL = (pageNumber: number)=>`https://raw.githubusercontent.com/navi-d97/movie-details-json/master/CONTENTLISTINGPAGE-PAGE${pageNumber}.json`;
+export const POSTER_URL = (posterName: string)=>`https://raw.githubusercontent.com/navi-d97/movie-details-json/master/${posterName}`;

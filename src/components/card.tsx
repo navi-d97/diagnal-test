@@ -1,16 +1,25 @@
 import React from 'react'
+import PlaceHolderImage from '../assets/placeholder_for_missing_posters.png'
 
 type CardProps = {
-    coverImage: string,
+    coverImage?: string,
     title: string
 }
 
 function Card(props: CardProps) {
     const {coverImage, title} = props;
     return (
-        <div className="w-full h-full object-cover">
-            <img src={coverImage} alt="" className="object-cover"/>
-            <div className="text-sm">
+        <div className="w-full h-full object-contain flex-col align-middle justify-center ml-3">
+            <img
+                src={coverImage||PlaceHolderImage}
+                alt=""
+                className="object-contain"
+                onError={(e:any)=>{
+                    e.target.onError = null;
+                    e.target.src=PlaceHolderImage
+                }}
+            />
+            <div className="text-sm text-white">
                 {title}
             </div>
         </div>
