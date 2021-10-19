@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { FixedSizeGrid as Grid } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 
-// import Card from './card';
+import Card from './card';
 
 export default function List() {
 
@@ -17,8 +17,8 @@ export default function List() {
                 height: style.height
             }}
         >
-            {/* TODO:
-            <Card coverImage={pic1} title="Picture 1" /> */}
+            {/* TODO: */}
+            <Card coverImage={"https://raw.githubusercontent.com/navi-d97/movie-details-json/master/poster1.jpg"} title="Picture 1" />
         </div>
     );
 
@@ -33,7 +33,7 @@ export default function List() {
     ));
 
     return (
-        <div className="flex-1 h-screen">
+        <div className="flex-1 h-full">
             <AutoSizer>
                 {({ height, width }) => (
                     <Grid
