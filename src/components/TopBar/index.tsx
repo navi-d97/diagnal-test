@@ -14,8 +14,9 @@ function TopBar(props:TopBarProps) {
     const [searchString, setSearchString] = useState(searchValue || "");
     return (
         <div className="sticky z-10 nav-bar flex flex-row bg-transparent">
-            <img src={navBarGradiant} alt="" className="absolute z-10 bg-transparent"/>
+            <img src={navBarGradiant} alt="" className="absolute z-10 bg-transparent gradiant-image"/>
             <input
+                placeholder="Search.."
                 value={searchString}
                 className="z-10 h-full w-11/12 ml-2 bg-transparent text-white text-xl"
                 onChange={(e)=>setSearchString(e.target.value)}
