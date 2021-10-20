@@ -5,14 +5,19 @@ import AutoSizer from "react-virtualized-auto-sizer";
 
 import Card from './card';
 import { POSTER_URL } from '../common/common';
+import './list.css';
 
 type ListProps = {
     data: { name: string, 'poster-image': string }[]
     loadMore: (pageNumber: number) => void;
+    rowHeight?: number;
+    itemCount?: number;
+    rowCount?: number;
+    columnCount?: number;
 }
 
 export default function List(props: ListProps) {
-    const { data, loadMore } = props;
+    const { data, loadMore, rowHeight = 220, columnCount=3, rowCount = 25, itemCount = 100 } = props;
     const pageNumber = useRef(1);
     const isItemLoaded = (index: number) => {
         return !!data[index]
@@ -39,7 +44,9 @@ export default function List(props: ListProps) {
                         title={data[index].name}
                     />
                     :
-                    <div className="text-white h-full flex items-center justify-center text-center">Loading...</div>
+                    <div className="text-white h-full flex items-center justify-center text-center">
+                        {/* Loading... */}
+                    </div>
                 }
             </div>
         )
@@ -56,16 +63,14 @@ export default function List(props: ListProps) {
     ));
 
     return (
-        <div className="flex-1 h-full">
+        <div className="flex-1 h-full mt-3 pb-3">
             <InfiniteLoader
                 threshold={6}
                 isItemLoaded={isItemLoaded}
-                itemCount={54}
+                itemCount={Math.min(data.length + 8, itemCount)}
                 loadMoreItems={(i) => {
                     pageNumber.current += 1;
-                    if(pageNumber.current <= 3){
                         loadMore(pageNumber.current)
-                    }
                 }}
             >
                 {({ onItemsRendered, ref }: any) => {
@@ -95,12 +100,12 @@ export default function List(props: ListProps) {
                                 return (
                                     <Grid
                                         className="Grid"
-                                        columnCount={3}
-                                        columnWidth={width / 3}
+                                        columnCount={columnCount}
+                                        columnWidth={width / columnCount}
                                         height={height}
                                         innerElementType={innerElementType}
-                                        rowCount={28}
-                                        rowHeight={250}
+                                        rowCount={rowCount}
+                                        rowHeight={rowHeight}
                                         width={width}
                                         itemData={data}
                                         onItemsRendered={newItemsRendered}

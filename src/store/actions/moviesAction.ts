@@ -1,4 +1,4 @@
-import {GET_MOVIES, GET_MOVIES_ERROR} from '../types'
+import {GET_MOVIES, GET_MOVIES_ERROR, SEARCH_MOVIES} from '../types'
 import axios from 'axios'
 import { MOVIES_DATA_URL } from '../../common/common'
 
@@ -18,4 +18,11 @@ export const getMovies = (pageNumber:number) => async (dispatch: (arg0: { type: 
         })
     }
 
+}
+
+export const searchMovies = (search:string) => async (dispatch: (arg0: { type: string; payload: any }) => void) => {
+    dispatch( {
+        type: SEARCH_MOVIES,
+        payload: search
+    })
 }
