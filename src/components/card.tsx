@@ -9,13 +9,12 @@ type CardProps = {
 function Card(props: CardProps) {
     const {coverImage, title} = props;
     return (
-        <div className="w-full h-full object-contain flex-col align-middle justify-center ml-3">
+        <div className="h-full object-contain flex-col align-middle justify-center ml-3 mr-3">
             <img
                 src={coverImage||PlaceHolderImage}
                 alt=""
                 className="object-contain"
                 onError={(e:any)=>{
-                    e.target.onError = null;
                     e.target.src=PlaceHolderImage
                 }}
             />
